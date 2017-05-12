@@ -1,9 +1,12 @@
 from celery import Celery
 from smtplib import SMTP
 from email.mime.text import MIMEText as text
+#import redis
 
 celery = Celery('a', backend='amqp://localhost//',
                     broker='amqp://localhost//')
+#celery = Celery('a', backend='redis://localhost//',
+#                    broker='redis://localhost//')
 
 @celery.task
 def usermail(sender_mail, sender_name, msg):
